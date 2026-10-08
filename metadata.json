@@ -1,0 +1,6 @@
+{
+  "name": "Rung Chuông Vàng - Chuyển Đổi Số",
+  "description": "Ứng dụng trình chiếu Rung chuông vàng - Hội thi Chuyển đổi số xã Tam Anh năm 2026 với đầy đủ 30 câu hỏi chính, 10 câu phụ, 5 câu khán giả, chuông vàng vinh danh và quản trị.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
