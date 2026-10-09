@@ -29,6 +29,97 @@ interface QuizScreenProps {
   pool: QuestionPool;
 }
 
+// Cấu hình màu sắc 4 đáp án theo đúng quy định:
+// A: Màu đỏ (chữ vàng)
+// B: Màu xanh dương nhạt (chữ trắng)
+// C: Màu vàng (chữ đỏ)
+// D: Màu xanh lá cây (chữ xanh dương đậm)
+const ANSWER_COLOR_THEMES: Record<OptionKey, {
+  // Trạng thái bình thường
+  border: string;
+  bg: string;
+  badgeBg: string;
+  badgeText: string;
+  badgeRing: string;
+  hover: string;
+  // Trạng thái khi công bố đáp án đúng
+  revealedCard: string;
+  revealedBadgeBg: string;
+  revealedBadgeText: string;
+  revealedBadgeRing: string;
+  revealedTextColor: string;
+  revealedIconColor: string;
+  // Huy hiệu thông báo góc trên
+  topBadge: string;
+  // Nút MC khi đã công bố
+  mcButton: string;
+}> = {
+  A: {
+    border: 'border-red-400 dark:border-red-500/60',
+    bg: 'bg-red-50/95 dark:bg-red-950/40',
+    badgeBg: 'bg-gradient-to-br from-red-500 to-red-600',
+    badgeText: 'text-[#FDE047]',
+    badgeRing: 'ring-4 ring-red-400/40 shadow-lg shadow-red-500/30',
+    hover: 'hover:border-red-500 dark:hover:border-red-400 hover:shadow-red-200/50',
+    revealedCard: 'border-red-500 bg-red-100/95 dark:border-red-400 dark:bg-red-950/85 shadow-[0_0_35px_rgba(239,68,68,0.5)] scale-[1.01] z-10 ring-4 ring-red-500/40',
+    revealedBadgeBg: 'bg-gradient-to-br from-red-500 to-red-600',
+    revealedBadgeText: 'text-[#FDE047]',
+    revealedBadgeRing: 'ring-4 ring-yellow-400 animate-pulse shadow-lg shadow-red-500/50',
+    revealedTextColor: 'text-red-950 dark:text-red-100',
+    revealedIconColor: 'text-red-600 dark:text-red-400',
+    topBadge: 'bg-red-600 text-[#FDE047] shadow-lg shadow-red-600/30 ring-2 ring-yellow-400/60',
+    mcButton: 'bg-red-600 text-[#FDE047] ring-2 ring-yellow-400/50 shadow-md shadow-red-600/30',
+  },
+  B: {
+    border: 'border-sky-400 dark:border-sky-500/60',
+    bg: 'bg-sky-50/95 dark:bg-sky-950/40',
+    badgeBg: 'bg-gradient-to-br from-sky-400 to-sky-600',
+    badgeText: 'text-white',
+    badgeRing: 'ring-4 ring-sky-400/40 shadow-lg shadow-sky-500/30',
+    hover: 'hover:border-sky-500 dark:hover:border-sky-400 hover:shadow-sky-200/50',
+    revealedCard: 'border-sky-500 bg-sky-100/95 dark:border-sky-400 dark:bg-sky-950/85 shadow-[0_0_35px_rgba(14,165,233,0.5)] scale-[1.01] z-10 ring-4 ring-sky-500/40',
+    revealedBadgeBg: 'bg-gradient-to-br from-sky-400 to-sky-600',
+    revealedBadgeText: 'text-white',
+    revealedBadgeRing: 'ring-4 ring-white animate-pulse shadow-lg shadow-sky-500/50',
+    revealedTextColor: 'text-sky-950 dark:text-sky-100',
+    revealedIconColor: 'text-sky-600 dark:text-sky-400',
+    topBadge: 'bg-sky-500 text-white shadow-lg shadow-sky-500/30 ring-2 ring-white/60',
+    mcButton: 'bg-sky-500 text-white ring-2 ring-white/50 shadow-md shadow-sky-500/30',
+  },
+  C: {
+    border: 'border-amber-400 dark:border-yellow-500/60',
+    bg: 'bg-amber-50/95 dark:bg-amber-950/40',
+    badgeBg: 'bg-gradient-to-br from-yellow-300 via-amber-400 to-yellow-500',
+    badgeText: 'text-[#DC2626]',
+    badgeRing: 'ring-4 ring-amber-400/40 shadow-lg shadow-yellow-500/30',
+    hover: 'hover:border-amber-500 dark:hover:border-yellow-400 hover:shadow-yellow-200/50',
+    revealedCard: 'border-amber-400 bg-amber-100/95 dark:border-yellow-400 dark:bg-amber-950/85 shadow-[0_0_35px_rgba(245,158,11,0.5)] scale-[1.01] z-10 ring-4 ring-amber-400/40',
+    revealedBadgeBg: 'bg-gradient-to-br from-yellow-300 via-amber-400 to-yellow-500',
+    revealedBadgeText: 'text-[#DC2626]',
+    revealedBadgeRing: 'ring-4 ring-red-500 animate-pulse shadow-lg shadow-yellow-500/50',
+    revealedTextColor: 'text-amber-950 dark:text-amber-100',
+    revealedIconColor: 'text-red-600 dark:text-red-400',
+    topBadge: 'bg-amber-400 text-[#DC2626] shadow-lg shadow-amber-400/30 ring-2 ring-red-500/60 font-black',
+    mcButton: 'bg-amber-400 text-[#DC2626] ring-2 ring-red-500/50 shadow-md shadow-amber-400/30',
+  },
+  D: {
+    border: 'border-emerald-400 dark:border-emerald-500/60',
+    bg: 'bg-emerald-50/95 dark:bg-emerald-950/40',
+    badgeBg: 'bg-gradient-to-br from-emerald-500 to-green-600',
+    badgeText: 'text-[#1E3A8A]',
+    badgeRing: 'ring-4 ring-emerald-400/40 shadow-lg shadow-emerald-500/30',
+    hover: 'hover:border-emerald-500 dark:hover:border-emerald-400 hover:shadow-emerald-200/50',
+    revealedCard: 'border-emerald-500 bg-emerald-100/95 dark:border-emerald-400 dark:bg-emerald-950/80 shadow-[0_0_35px_rgba(16,185,129,0.5)] scale-[1.01] z-10 ring-4 ring-emerald-500/40',
+    revealedBadgeBg: 'bg-gradient-to-br from-emerald-500 to-green-600',
+    revealedBadgeText: 'text-[#1E3A8A]',
+    revealedBadgeRing: 'ring-4 ring-blue-700 animate-pulse shadow-lg shadow-emerald-500/50',
+    revealedTextColor: 'text-emerald-950 dark:text-emerald-100',
+    revealedIconColor: 'text-blue-800 dark:text-blue-400',
+    topBadge: 'bg-emerald-600 text-[#1E3A8A] shadow-lg shadow-emerald-600/30 ring-2 ring-blue-700/60 font-black',
+    mcButton: 'bg-emerald-600 text-[#1E3A8A] ring-2 ring-blue-700/50 shadow-md shadow-emerald-600/30',
+  },
+};
+
 export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
   const navigate = useNavigate();
   const {
@@ -279,7 +370,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
               </div>
             )}
             {isAnswerRevealed && (
-              <div className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-black text-sm sm:text-base md:text-lg tracking-wider uppercase shadow-lg shadow-emerald-600/25 flex items-center gap-2">
+              <div className={`px-4 py-2 rounded-xl font-black text-sm sm:text-base md:text-lg tracking-wider uppercase shadow-lg flex items-center gap-2 ${ANSWER_COLOR_THEMES[currentQ.correctAnswer].topBadge}`}>
                 <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> Đã công bố đáp án ({currentQ.correctAnswer})
               </div>
             )}
@@ -329,60 +420,21 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
           </div>
         </div>
 
-        {/* 4 ANSWER CARDS: A, B, C, D (Kích thước nâng to lên 1 tý cho tầm nhìn xa, màu sắc giữ nguyên 100%) */}
+        {/* 4 ANSWER CARDS: A, B, C, D (Khi công bố đáp án thì mang màu sắc tương ứng quy định) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-4.5 xl:gap-5 flex-shrink-0">
           {(['A', 'B', 'C', 'D'] as OptionKey[]).map((key) => {
             const text = currentQ.options[key];
             const isCorrect = currentQ.correctAnswer === key;
             const isRevealedAndCorrect = isAnswerRevealed && isCorrect;
             const isRevealedAndWrong = isAnswerRevealed && !isCorrect;
-
-            // Màu sắc theo đúng quy định và ảnh đính kèm của người dùng:
-            // A - Màu đỏ (chữ vàng như ảnh mẫu)
-            // B - Màu xanh dương nhạt (chữ trắng như ảnh mẫu)
-            // C - Màu vàng (chữ đỏ như ảnh mẫu)
-            // D - Màu xanh lá cây (chữ xanh dương đậm như ảnh mẫu)
-            const keyConfig = {
-              A: {
-                border: 'border-red-400 dark:border-red-500/60',
-                bg: 'bg-red-50/95 dark:bg-red-950/40',
-                badgeBg: 'bg-gradient-to-br from-red-500 to-red-600',
-                badgeText: 'text-[#FDE047]',
-                badgeRing: 'ring-4 ring-red-400/40 shadow-lg shadow-red-500/30',
-                hover: 'hover:border-red-500 dark:hover:border-red-400 hover:shadow-red-200/50',
-              },
-              B: {
-                border: 'border-sky-400 dark:border-sky-500/60',
-                bg: 'bg-sky-50/95 dark:bg-sky-950/40',
-                badgeBg: 'bg-gradient-to-br from-sky-400 to-sky-600',
-                badgeText: 'text-white',
-                badgeRing: 'ring-4 ring-sky-400/40 shadow-lg shadow-sky-500/30',
-                hover: 'hover:border-sky-500 dark:hover:border-sky-400 hover:shadow-sky-200/50',
-              },
-              C: {
-                border: 'border-amber-400 dark:border-yellow-500/60',
-                bg: 'bg-amber-50/95 dark:bg-amber-950/40',
-                badgeBg: 'bg-gradient-to-br from-yellow-300 via-amber-400 to-yellow-500',
-                badgeText: 'text-[#DC2626]',
-                badgeRing: 'ring-4 ring-amber-400/40 shadow-lg shadow-yellow-500/30',
-                hover: 'hover:border-amber-500 dark:hover:border-yellow-400 hover:shadow-yellow-200/50',
-              },
-              D: {
-                border: 'border-emerald-400 dark:border-emerald-500/60',
-                bg: 'bg-emerald-50/95 dark:bg-emerald-950/40',
-                badgeBg: 'bg-gradient-to-br from-emerald-500 to-green-600',
-                badgeText: 'text-[#1E3A8A]',
-                badgeRing: 'ring-4 ring-emerald-400/40 shadow-lg shadow-emerald-500/30',
-                hover: 'hover:border-emerald-500 dark:hover:border-emerald-400 hover:shadow-emerald-200/50',
-              },
-            }[key];
+            const keyConfig = ANSWER_COLOR_THEMES[key];
 
             return (
               <div
                 key={key}
                 className={`relative flex items-center gap-4 sm:gap-4.5 lg:gap-5.5 p-3.5 sm:p-4.5 md:p-5 lg:p-5.5 xl:p-6 rounded-2xl border-2 sm:border-3 transition-all duration-300 min-h-[76px] sm:min-h-[86px] md:min-h-[96px] lg:min-h-[106px] xl:min-h-[116px] ${
                   isRevealedAndCorrect
-                    ? 'border-emerald-500 bg-emerald-100/95 dark:border-emerald-400 dark:bg-emerald-950/80 shadow-[0_0_35px_rgba(16,185,129,0.5)] scale-[1.01] z-10 ring-4 ring-emerald-500/40'
+                    ? keyConfig.revealedCard
                     : isRevealedAndWrong
                     ? 'opacity-35 border-slate-300 bg-slate-200/60 dark:border-slate-800 dark:bg-slate-900/40 scale-95'
                     : `${keyConfig.border} ${keyConfig.bg} ${keyConfig.hover} shadow-md dark:shadow-lg`
@@ -392,7 +444,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                 <div
                   className={`w-14 h-14 sm:w-16 sm:h-16 md:w-[70px] md:h-[70px] lg:w-[78px] lg:h-[78px] xl:w-[86px] xl:h-[86px] rounded-full flex-shrink-0 flex items-center justify-center text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] xl:text-[44px] font-black transition-all ${
                     isRevealedAndCorrect
-                      ? 'bg-emerald-500 text-slate-950 ring-4 ring-emerald-300 animate-pulse shadow-lg shadow-emerald-500/40'
+                      ? `${keyConfig.revealedBadgeBg} ${keyConfig.revealedBadgeText} ${keyConfig.revealedBadgeRing}`
                       : `${keyConfig.badgeBg} ${keyConfig.badgeText} ${keyConfig.badgeRing}`
                   }`}
                 >
@@ -402,7 +454,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                 {/* Option text - Kích thước to hơn 1 tý, tầm nhìn xa rõ nét */}
                 <div className={`flex-1 text-xl sm:text-2xl md:text-[27px] lg:text-[31px] xl:text-[35px] 2xl:text-[39px] font-black leading-snug tracking-tight ${
                   isRevealedAndCorrect
-                    ? 'text-emerald-950 dark:text-emerald-100'
+                    ? keyConfig.revealedTextColor
                     : 'text-[#0B2A6F] dark:text-slate-100'
                 }`}>
                   {text}
@@ -410,7 +462,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
                 {/* Crown/Check icon on correct answer */}
                 {isRevealedAndCorrect && (
-                  <div className="pr-2 text-emerald-600 dark:text-emerald-400 animate-bounce flex-shrink-0">
+                  <div className={`pr-2 animate-bounce flex-shrink-0 ${keyConfig.revealedIconColor}`}>
                     <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12" />
                   </div>
                 )}
@@ -511,7 +563,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                 disabled={isAnswerRevealed}
                 className={`px-6 py-2.5 rounded-xl font-extrabold text-sm flex items-center gap-2 shadow-lg transition-all ${
                   isAnswerRevealed
-                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300 dark:bg-slate-800 dark:text-slate-500 dark:border-slate-700'
+                    ? `${ANSWER_COLOR_THEMES[currentQ.correctAnswer].mcButton} opacity-95 cursor-default`
                     : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white shadow-blue-500/25'
                 }`}
                 title="Công bố đáp án (Phím Enter)"
