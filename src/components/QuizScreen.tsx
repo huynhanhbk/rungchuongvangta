@@ -275,7 +275,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
             </div>
             {timer.isFinished && (
               <div className="px-4 py-2 rounded-xl bg-rose-600 text-white font-black text-sm sm:text-base md:text-lg tracking-wider uppercase animate-bounce shadow-lg shadow-rose-600/30">
-                🛑 Hết giờ - Hạ bảng!
+                🛑 Hết giờ!
               </div>
             )}
             {isAnswerRevealed && (
