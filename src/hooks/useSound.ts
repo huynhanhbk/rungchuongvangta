@@ -39,7 +39,8 @@ export const useSound = () => {
     playWrong: () => sound.playWrong(),
     playGoldenBell: () => sound.playGoldenBell(),
     playFanfare: () => sound.playFanfare(),
-    playFirework: () => sound.playFirework(),
+    playCelebrationChime: () => sound.playCelebrationChime(),
+    stopCelebrationChime: () => sound.stopCelebrationChime(),
     playSlotSpin: () => sound.playSlotSpin(),
     playSlotWin: () => sound.playSlotWin(),
   };

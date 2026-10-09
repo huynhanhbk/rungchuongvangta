@@ -2,6 +2,30 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --color-bg-top: #2F6FED;
+  --color-bg-mid: #DCEBFF;
+  --color-bg-bottom: #F3F8FF;
+  --color-accent: #FF8A00;
+  --color-accent-gold: #FFC107;
+  --color-navy: #0B2A6F;
+  --color-cyan: #22B8F0;
+  --color-card-bg: rgba(255, 255, 255, 0.96);
+  --color-card-border: rgba(34, 184, 240, 0.35);
+}
+
+.dark {
+  --color-bg-top: #0C1E40;
+  --color-bg-mid: #102958;
+  --color-bg-bottom: #08142C;
+  --color-accent: #FFA02E;
+  --color-accent-gold: #FFCA28;
+  --color-navy: #F1F5F9;
+  --color-cyan: #38BDF8;
+  --color-card-bg: rgba(15, 29, 61, 0.95);
+  --color-card-border: rgba(56, 189, 248, 0.35);
+}
+
 @layer utilities {
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
@@ -10,6 +34,142 @@
 
   .animate-fade-in {
     animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Gentle periodic bell rocking */
+  @keyframes gentleBellSway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-3.5deg); }
+    75% { transform: rotate(3.5deg); }
+  }
+
+  /* Strong resonant bell ring shake when tapped (synced with bell strikes) */
+  @keyframes strongBellRing {
+    0% { transform: rotate(0deg) scale(1.05); }
+    4% { transform: rotate(-18deg) scale(1.07); }
+    10% { transform: rotate(16deg) scale(1.06); }
+    16% { transform: rotate(-14deg) scale(1.05); }
+    22% { transform: rotate(12deg) scale(1.04); }
+    30% { transform: rotate(-8deg) scale(1.03); }
+    38% { transform: rotate(6deg) scale(1.02); }
+    46% { transform: rotate(-4deg) scale(1.01); }
+    54% { transform: rotate(3deg) scale(1.01); }
+    65% { transform: rotate(-2deg) scale(1); }
+    80% { transform: rotate(1deg) scale(1); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+
+  /* Light ray burst celebration that lasts exactly 10 SECONDS with shimmering pulses */
+  @keyframes rayExpand10s {
+    0% {
+      opacity: 0;
+      transform: scale(0.2) rotate(var(--ray-deg, 0deg));
+    }
+    4% {
+      opacity: 1;
+      transform: scale(1.08) rotate(var(--ray-deg, 0deg));
+    }
+    10% {
+      opacity: 0.95;
+      transform: scale(1) rotate(calc(var(--ray-deg, 0deg) + 2deg));
+    }
+    22% {
+      opacity: 1;
+      transform: scale(1.06) rotate(calc(var(--ray-deg, 0deg) + 6deg));
+    }
+    38% {
+      opacity: 0.9;
+      transform: scale(0.98) rotate(calc(var(--ray-deg, 0deg) + 10deg));
+    }
+    54% {
+      opacity: 1;
+      transform: scale(1.07) rotate(calc(var(--ray-deg, 0deg) + 15deg));
+    }
+    70% {
+      opacity: 0.92;
+      transform: scale(1) rotate(calc(var(--ray-deg, 0deg) + 20deg));
+    }
+    85% {
+      opacity: 0.88;
+      transform: scale(1.04) rotate(calc(var(--ray-deg, 0deg) + 24deg));
+    }
+    94% {
+      opacity: 0.5;
+      transform: scale(1.02) rotate(calc(var(--ray-deg, 0deg) + 27deg));
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.15) rotate(calc(var(--ray-deg, 0deg) + 30deg));
+    }
+  }
+
+  /* Halo rotating shimmer glow lasting 10s */
+  @keyframes haloRotate10s {
+    0% {
+      opacity: 0;
+      transform: rotate(0deg) scale(0.7);
+    }
+    5% {
+      opacity: 0.95;
+      transform: rotate(15deg) scale(1.05);
+    }
+    85% {
+      opacity: 0.85;
+      transform: rotate(180deg) scale(1.0);
+    }
+    100% {
+      opacity: 0;
+      transform: rotate(220deg) scale(1.15);
+    }
+  }
+
+  /* Congratulation text zoom in */
+  @keyframes popInCongrat {
+    0% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    65% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-bell-gentle {
+    animation: gentleBellSway 3.5s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .animate-bell-ring {
+    animation: strongBellRing 1.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+    transform-origin: top center;
+  }
+
+  .animate-ray-burst-10s {
+    animation: rayExpand10s 10s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-halo-10s {
+    animation: haloRotate10s 10s linear forwards;
+  }
+
+  .animate-congrat-pop {
+    animation: popInCongrat 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+}
+
+/* Tôn trọng prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bell-gentle,
+  .animate-bell-ring,
+  .animate-ray-burst,
+  .animate-congrat-pop {
+    animation: none !important;
+    transition: none !important;
   }
 }
 

@@ -23,6 +23,7 @@ import { useTimer } from '../hooks/useTimer';
 import { useSound } from '../hooks/useSound';
 import { APP_CONFIG } from '../config';
 import { AudienceLuckyDrawModal } from './AudienceLuckyDrawModal';
+import { DigitalTechBackground } from './DigitalTechBackground';
 
 interface QuizScreenProps {
   pool: QuestionPool;
@@ -213,16 +214,14 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
   const isLastSeconds = timer.timeLeft <= 3 && timer.timeLeft > 0 && timer.isRunning;
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-slate-100 via-sky-50/50 to-slate-200 text-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 dark:text-white flex flex-col justify-between overflow-x-hidden select-none font-sans transition-colors duration-200">
-      {/* Background Subtle Tech Grid & Ambient Glows */}
-      <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 dark:opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-amber-400/10 dark:bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative min-h-screen w-full bg-gradient-to-b from-[#0284C7] via-[#E0F2FE] to-[#BAE6FD] text-[#0B2A6F] dark:from-[#06152D] dark:via-[#0B2545] dark:to-[#031A3D] dark:text-slate-100 flex flex-col justify-between overflow-x-hidden select-none font-sans transition-colors duration-300">
+      {/* Background Digital Transformation: Dot Matrix, Rotating Globe & Cyber Highways */}
+      <DigitalTechBackground showGlobe={true} showHighways={true} showBadges={false} />
 
       {/* ============================================================== */}
       {/* 1. HEADER SECTION (Thông tin giải đấu & Tiến độ câu hỏi)       */}
       {/* ============================================================== */}
-      <header className="relative z-20 px-6 lg:px-12 pr-44 pt-4 pb-3 flex items-center justify-between border-b border-slate-300/80 bg-white/85 dark:border-slate-800/80 dark:bg-slate-950/50 backdrop-blur-md transition-colors">
+      <header className="relative z-20 px-6 lg:px-12 pr-44 pt-4 pb-3 flex items-center justify-between border-b border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/80 backdrop-blur-md transition-colors">
         {/* Logo & Banner đơn vị */}
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 font-black text-2xl">
@@ -237,7 +236,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                 {APP_CONFIG.slogan}
               </span>
             </div>
-            <h1 className="text-lg lg:text-xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+            <h1 className="text-lg lg:text-xl font-black text-[#0B2A6F] dark:text-slate-100 tracking-tight">
               {APP_CONFIG.contestName}
             </h1>
           </div>
@@ -245,8 +244,8 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
         {/* Center Progress Badge */}
         <div className="flex items-center gap-3">
-          <div className="px-6 py-2.5 rounded-2xl bg-white/95 border border-slate-300 shadow-md dark:bg-slate-900/90 dark:border-slate-700/80 dark:shadow-xl flex items-center gap-2.5">
-            <span className="text-slate-600 dark:text-slate-400 text-sm font-semibold uppercase">Tiến độ:</span>
+          <div className="px-6 py-2.5 rounded-2xl bg-white/95 border border-sky-300/80 shadow-md dark:bg-slate-900/90 dark:border-slate-700/80 dark:shadow-xl flex items-center gap-2.5">
+            <span className="text-[#0369A1] dark:text-slate-400 text-sm font-semibold uppercase">Tiến độ:</span>
             <span className="text-2xl font-black text-amber-600 dark:text-amber-400 font-mono">
               Câu {currentIndex + 1}
               <span className="text-slate-500 dark:text-slate-500 text-lg font-normal">/{currentQuestions.length}</span>
@@ -256,7 +255,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
         {/* Right Corner (Clean balanced spacing) */}
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/90 border border-slate-300 text-xs font-semibold text-slate-700 dark:bg-slate-900/60 dark:border-slate-800 dark:text-slate-400">
+          <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/90 border border-sky-200 text-xs font-semibold text-[#0369A1] dark:bg-slate-900/60 dark:border-slate-800 dark:text-slate-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>{APP_CONFIG.year} • Tam Anh</span>
           </div>
@@ -323,9 +322,9 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
           </div>
         </div>
 
-        {/* QUESTION TEXT BOX (Requirement: >= 48px on 1080p, crystal-clear readability) */}
-        <div className="relative bg-white/95 dark:bg-gradient-to-r dark:from-slate-900/95 dark:via-slate-850/95 dark:to-slate-900/95 border-2 border-slate-300/90 dark:border-slate-700/80 rounded-3xl p-6 md:p-8 lg:p-10 shadow-xl dark:shadow-2xl mb-6 backdrop-blur-md transition-colors">
-          <div className="text-3xl md:text-4xl lg:text-[46px] font-extrabold text-slate-950 dark:text-white leading-tight tracking-tight text-center">
+        {/* QUESTION TEXT BOX (Requirement: >= 48px on 1080p, crystal-clear readability with high contrast #0B2A6F) */}
+        <div className="relative bg-white/95 dark:bg-slate-900/95 border-2 border-sky-300/90 dark:border-sky-500/30 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl mb-6 backdrop-blur-md transition-colors">
+          <div className="text-3xl md:text-4xl lg:text-[46px] font-extrabold text-[#0B2A6F] dark:text-white leading-tight tracking-tight text-center">
             {currentQ.content}
           </div>
         </div>
@@ -389,10 +388,10 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                 </div>
 
                 {/* Option text */}
-                <div className={`flex-1 text-2xl md:text-3xl lg:text-[34px] font-bold leading-snug ${
+                <div className={`flex-1 text-2xl md:text-3xl lg:text-[34px] font-extrabold leading-snug ${
                   isRevealedAndCorrect
-                    ? 'text-emerald-950 dark:text-emerald-100 font-extrabold'
-                    : 'text-slate-900 dark:text-slate-100'
+                    ? 'text-emerald-950 dark:text-emerald-100'
+                    : 'text-[#0B2A6F] dark:text-slate-100'
                 }`}>
                   {text}
                 </div>
@@ -410,8 +409,8 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
         {/* Explanation banner (if revealed and available) */}
         {isAnswerRevealed && currentQ.explanation && (
-          <div className="mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-950 dark:bg-slate-900/90 dark:border-emerald-500/40 dark:text-emerald-200 text-base md:text-lg flex items-start gap-3 animate-fade-in shadow-md">
-            <span className="font-extrabold text-emerald-700 bg-emerald-200 dark:text-emerald-400 uppercase text-xs tracking-wider px-2 py-1 dark:bg-emerald-950 rounded-lg">
+          <div className="mt-4 p-4 rounded-2xl bg-white/95 border-2 border-emerald-400 text-emerald-950 dark:bg-slate-900/90 dark:border-emerald-500/40 dark:text-emerald-200 text-base md:text-lg flex items-start gap-3 animate-fade-in shadow-md backdrop-blur-md">
+            <span className="font-extrabold text-emerald-700 bg-emerald-100 dark:text-emerald-400 uppercase text-xs tracking-wider px-2 py-1 dark:bg-emerald-950 rounded-lg">
               Giải thích
             </span>
             <span className="font-medium">{currentQ.explanation}</span>
@@ -422,12 +421,12 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
       {/* ============================================================== */}
       {/* 3. MC CONTROL BAR (Bottom Deck, toggleable with 'H' key)       */}
       {/* ============================================================== */}
-      <footer className="relative z-30 border-t border-slate-300/90 bg-white/95 dark:border-slate-800/80 dark:bg-slate-950/90 backdrop-blur-lg transition-colors">
+      <footer className="relative z-30 border-t border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/90 backdrop-blur-lg transition-colors">
         {/* Toggle hide bar button */}
         <div className="absolute -top-7 right-8">
           <button
             onClick={() => setHideMCBar(!hideMCBar)}
-            className="px-3 py-1 rounded-t-xl bg-white border-t border-x border-slate-300 text-xs font-semibold text-slate-700 hover:text-slate-950 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white flex items-center gap-1.5 shadow"
+            className="px-3 py-1 rounded-t-xl bg-white/95 border-t border-x border-sky-200 text-xs font-semibold text-[#0369A1] hover:text-[#0B2A6F] dark:bg-slate-900 dark:border-slate-700 dark:text-slate-400 dark:hover:text-white flex items-center gap-1.5 shadow"
           >
             {hideMCBar ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
             {hideMCBar ? 'Hiện thanh MC (H)' : 'Ẩn thanh MC (H)'}

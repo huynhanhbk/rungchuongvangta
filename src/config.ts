@@ -4,8 +4,12 @@
  */
 
 export const APP_CONFIG = {
-  // Thông tin hội thi
+  // Thông tin hội thi & Tiêu đề Banner
   contestName: "Hội thi Chuyển đổi số xã Tam Anh năm 2026",
+  bannerTopTitle: "ỦY BAN NHÂN DÂN XÃ TAM ANH",
+  bannerMainTitle: "HỘI THI CHUYỂN ĐỔI SỐ",
+  bannerTheme: "Chủ đề: Công dân số, Văn hóa số xã Tam Anh năm 2026",
+  bannerDate: "Tam Anh, ngày 10 tháng 10 năm 2026",
   shortName: "Rung Chuông Vàng",
   slogan: "Công dân số - Văn hóa số",
   organizer: "Ủy ban nhân dân xã Tam Anh",
