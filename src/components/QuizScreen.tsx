@@ -214,29 +214,29 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
   const isLastSeconds = timer.timeLeft <= 3 && timer.timeLeft > 0 && timer.isRunning;
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-b from-[#0284C7] via-[#E0F2FE] to-[#BAE6FD] text-[#0B2A6F] dark:from-[#06152D] dark:via-[#0B2545] dark:to-[#031A3D] dark:text-slate-100 flex flex-col justify-between overflow-x-hidden select-none font-sans transition-colors duration-300">
+    <div className="relative h-screen max-h-screen w-full bg-gradient-to-b from-[#0284C7] via-[#E0F2FE] to-[#BAE6FD] text-[#0B2A6F] dark:from-[#06152D] dark:via-[#0B2545] dark:to-[#031A3D] dark:text-slate-100 flex flex-col justify-between overflow-hidden select-none font-sans transition-colors duration-300">
       {/* Background Digital Transformation: Dot Matrix, Rotating Globe & Cyber Highways */}
       <DigitalTechBackground showGlobe={true} showHighways={true} showBadges={false} />
 
       {/* ============================================================== */}
       {/* 1. HEADER SECTION (Thông tin giải đấu & Tiến độ câu hỏi)       */}
       {/* ============================================================== */}
-      <header className="relative z-20 px-6 lg:px-12 pr-44 pt-4 pb-3 flex items-center justify-between border-b border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/80 backdrop-blur-md transition-colors">
+      <header className="relative z-20 px-6 lg:px-10 pr-44 pt-3 pb-2.5 flex items-center justify-between border-b border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/80 backdrop-blur-md transition-colors flex-shrink-0">
         {/* Logo & Banner đơn vị */}
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 font-black text-2xl">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-400 via-amber-500 to-yellow-600 flex items-center justify-center shadow-md shadow-amber-500/20 text-slate-950 font-black text-xl flex-shrink-0">
             🔔
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider border ${theme.accentBadge}`}>
+              <span className={`px-2 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider border ${theme.accentBadge}`}>
                 {theme.title}
               </span>
-              <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold uppercase tracking-wider">
+              <span className="text-[11px] text-amber-600 dark:text-amber-400 font-semibold uppercase tracking-wider">
                 {APP_CONFIG.slogan}
               </span>
             </div>
-            <h1 className="text-lg lg:text-xl font-black text-[#0B2A6F] dark:text-slate-100 tracking-tight">
+            <h1 className="text-base lg:text-lg font-black text-[#0B2A6F] dark:text-slate-100 tracking-tight leading-tight">
               {APP_CONFIG.contestName}
             </h1>
           </div>
@@ -244,18 +244,18 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
         {/* Center Progress Badge */}
         <div className="flex items-center gap-3">
-          <div className="px-6 py-2.5 rounded-2xl bg-white/95 border border-sky-300/80 shadow-md dark:bg-slate-900/90 dark:border-slate-700/80 dark:shadow-xl flex items-center gap-2.5">
-            <span className="text-[#0369A1] dark:text-slate-400 text-sm font-semibold uppercase">Tiến độ:</span>
-            <span className="text-2xl font-black text-amber-600 dark:text-amber-400 font-mono">
+          <div className="px-5 py-2 rounded-2xl bg-white/95 border border-sky-300/80 shadow-sm dark:bg-slate-900/90 dark:border-slate-700/80 dark:shadow-md flex items-center gap-2">
+            <span className="text-[#0369A1] dark:text-slate-400 text-xs sm:text-sm font-semibold uppercase">Tiến độ:</span>
+            <span className="text-xl sm:text-2xl font-black text-amber-600 dark:text-amber-400 font-mono">
               Câu {currentIndex + 1}
-              <span className="text-slate-500 dark:text-slate-500 text-lg font-normal">/{currentQuestions.length}</span>
+              <span className="text-slate-500 dark:text-slate-500 text-base font-normal">/{currentQuestions.length}</span>
             </span>
           </div>
         </div>
 
         {/* Right Corner (Clean balanced spacing) */}
         <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/90 border border-sky-200 text-xs font-semibold text-[#0369A1] dark:bg-slate-900/60 dark:border-slate-800 dark:text-slate-400">
+          <div className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-2xl bg-white/90 border border-sky-200 text-xs font-semibold text-[#0369A1] dark:bg-slate-900/60 dark:border-slate-800 dark:text-slate-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>{APP_CONFIG.year} • Tam Anh</span>
           </div>
@@ -265,29 +265,29 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
       {/* ============================================================== */}
       {/* 2. MAIN STAGE CONTENT (Đồng hồ, Câu hỏi & 4 Đáp án)            */}
       {/* ============================================================== */}
-      <main className="relative z-10 flex-1 px-6 lg:px-14 py-4 flex flex-col justify-center max-w-[1800px] mx-auto w-full">
-        {/* Top Stage Bar: Big Circular Timer & Status Alerts */}
-        <div className="flex items-center justify-between mb-4">
+      <main className="relative z-10 flex-1 px-4 sm:px-6 lg:px-10 xl:px-12 py-2 sm:py-3 flex flex-col justify-center max-w-[1700px] mx-auto w-full min-h-0">
+        {/* Top Stage Bar: Circular Timer & Status Alerts */}
+        <div className="flex items-center justify-between mb-2.5 sm:mb-3.5 lg:mb-4 flex-shrink-0">
           {/* Question order badge */}
-          <div className="flex items-center gap-3">
-            <div className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold text-base tracking-wider uppercase shadow-md shadow-blue-500/20">
+          <div className="flex items-center gap-2.5">
+            <div className="px-5 py-2 sm:px-6 sm:py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-base sm:text-lg md:text-xl lg:text-2xl tracking-wider uppercase shadow-md shadow-blue-500/20">
               CÂU SỐ {currentIndex + 1}
             </div>
             {timer.isFinished && (
-              <div className="px-4 py-1.5 rounded-xl bg-rose-600 text-white font-black text-sm tracking-wider uppercase animate-bounce shadow-lg shadow-rose-600/40">
+              <div className="px-4 py-2 rounded-xl bg-rose-600 text-white font-black text-sm sm:text-base md:text-lg tracking-wider uppercase animate-bounce shadow-lg shadow-rose-600/30">
                 🛑 Hết giờ - Hạ bảng!
               </div>
             )}
             {isAnswerRevealed && (
-              <div className="px-4 py-1.5 rounded-xl bg-emerald-600 text-white font-black text-sm tracking-wider uppercase shadow-lg shadow-emerald-600/30 flex items-center gap-1.5">
-                <CheckCircle className="w-4 h-4" /> Đã công bố đáp án ({currentQ.correctAnswer})
+              <div className="px-4 py-2 rounded-xl bg-emerald-600 text-white font-black text-sm sm:text-base md:text-lg tracking-wider uppercase shadow-lg shadow-emerald-600/25 flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> Đã công bố đáp án ({currentQ.correctAnswer})
               </div>
             )}
           </div>
 
-          {/* Large Countdown Circular Clock (Requirement: ~120px) */}
+          {/* Countdown Circular Clock - Kích thước nổi bật, dễ nhìn từ xa */}
           <div className="relative flex items-center justify-center">
-            <div className={`relative w-28 h-28 md:w-32 md:h-32 flex items-center justify-center transition-transform ${isLastSeconds ? 'scale-110 animate-pulse' : ''}`}>
+            <div className={`relative w-20 h-20 sm:w-24 sm:h-24 md:w-26 md:h-26 lg:w-28 lg:h-28 flex items-center justify-center transition-transform ${isLastSeconds ? 'scale-105 animate-pulse' : ''}`}>
               <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                 {/* Background Ring */}
                 <circle
@@ -311,10 +311,10 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
                   fill="transparent"
                 />
               </svg>
-              {/* Giant Digital Seconds */}
-              <div className={`absolute flex flex-col items-center justify-center font-mono font-black text-4xl md:text-5xl ${timerColor}`}>
+              {/* Digital Seconds */}
+              <div className={`absolute flex flex-col items-center justify-center font-mono font-black text-3xl sm:text-4xl md:text-5xl ${timerColor}`}>
                 <span>{timer.timeLeft}</span>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-400 -mt-1">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-600 dark:text-slate-400 -mt-1">
                   Giây
                 </span>
               </div>
@@ -322,73 +322,85 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
           </div>
         </div>
 
-        {/* QUESTION TEXT BOX (Requirement: >= 48px on 1080p, crystal-clear readability with high contrast #0B2A6F) */}
-        <div className="relative bg-white/95 dark:bg-slate-900/95 border-2 border-sky-300/90 dark:border-sky-500/30 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl mb-6 backdrop-blur-md transition-colors">
-          <div className="text-3xl md:text-4xl lg:text-[46px] font-extrabold text-[#0B2A6F] dark:text-white leading-tight tracking-tight text-center">
+        {/* QUESTION TEXT BOX - Nâng kích thước to rõ nét, phù hợp tầm nhìn xa trên màn hình lớn */}
+        <div className="relative bg-white/95 dark:bg-slate-900/95 border-2 sm:border-3 border-sky-300/90 dark:border-sky-500/40 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-7 lg:p-8 shadow-xl mb-3.5 sm:mb-4 lg:mb-5 backdrop-blur-md transition-colors flex-shrink-0">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[46px] 2xl:text-[50px] font-black text-[#0B2A6F] dark:text-white leading-snug tracking-tight text-center drop-shadow-sm">
             {currentQ.content}
           </div>
         </div>
 
-        {/* 4 ANSWER CARDS: A, B, C, D (Requirement: ~40px, colorful distinct badges) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+        {/* 4 ANSWER CARDS: A, B, C, D (Kích thước nâng to lên 1 tý cho tầm nhìn xa, màu sắc giữ nguyên 100%) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-4.5 xl:gap-5 flex-shrink-0">
           {(['A', 'B', 'C', 'D'] as OptionKey[]).map((key) => {
             const text = currentQ.options[key];
             const isCorrect = currentQ.correctAnswer === key;
             const isRevealedAndCorrect = isAnswerRevealed && isCorrect;
             const isRevealedAndWrong = isAnswerRevealed && !isCorrect;
 
-            // Distinct theme colors for options with full Light and Dark mode styling
+            // Màu sắc theo đúng quy định và ảnh đính kèm của người dùng:
+            // A - Màu đỏ (chữ vàng như ảnh mẫu)
+            // B - Màu xanh dương nhạt (chữ trắng như ảnh mẫu)
+            // C - Màu vàng (chữ đỏ như ảnh mẫu)
+            // D - Màu xanh lá cây (chữ xanh dương đậm như ảnh mẫu)
             const keyConfig = {
               A: {
-                border: 'border-blue-400 dark:border-blue-500/40',
-                bg: 'bg-blue-50/80 dark:bg-blue-950/20',
-                badge: 'bg-blue-600 text-white',
-                hover: 'hover:border-blue-500 dark:hover:border-blue-400',
+                border: 'border-red-400 dark:border-red-500/60',
+                bg: 'bg-red-50/95 dark:bg-red-950/40',
+                badgeBg: 'bg-gradient-to-br from-red-500 to-red-600',
+                badgeText: 'text-[#FDE047]',
+                badgeRing: 'ring-4 ring-red-400/40 shadow-lg shadow-red-500/30',
+                hover: 'hover:border-red-500 dark:hover:border-red-400 hover:shadow-red-200/50',
               },
               B: {
-                border: 'border-emerald-400 dark:border-emerald-500/40',
-                bg: 'bg-emerald-50/80 dark:bg-emerald-950/20',
-                badge: 'bg-emerald-600 text-white',
-                hover: 'hover:border-emerald-500 dark:hover:border-emerald-400',
+                border: 'border-sky-400 dark:border-sky-500/60',
+                bg: 'bg-sky-50/95 dark:bg-sky-950/40',
+                badgeBg: 'bg-gradient-to-br from-sky-400 to-sky-600',
+                badgeText: 'text-white',
+                badgeRing: 'ring-4 ring-sky-400/40 shadow-lg shadow-sky-500/30',
+                hover: 'hover:border-sky-500 dark:hover:border-sky-400 hover:shadow-sky-200/50',
               },
               C: {
-                border: 'border-amber-400 dark:border-amber-500/40',
-                bg: 'bg-amber-50/80 dark:bg-amber-950/20',
-                badge: 'bg-amber-600 text-white',
-                hover: 'hover:border-amber-500 dark:hover:border-amber-400',
+                border: 'border-amber-400 dark:border-yellow-500/60',
+                bg: 'bg-amber-50/95 dark:bg-amber-950/40',
+                badgeBg: 'bg-gradient-to-br from-yellow-300 via-amber-400 to-yellow-500',
+                badgeText: 'text-[#DC2626]',
+                badgeRing: 'ring-4 ring-amber-400/40 shadow-lg shadow-yellow-500/30',
+                hover: 'hover:border-amber-500 dark:hover:border-yellow-400 hover:shadow-yellow-200/50',
               },
               D: {
-                border: 'border-purple-400 dark:border-purple-500/40',
-                bg: 'bg-purple-50/80 dark:bg-purple-950/20',
-                badge: 'bg-purple-600 text-white',
-                hover: 'hover:border-purple-500 dark:hover:border-purple-400',
+                border: 'border-emerald-400 dark:border-emerald-500/60',
+                bg: 'bg-emerald-50/95 dark:bg-emerald-950/40',
+                badgeBg: 'bg-gradient-to-br from-emerald-500 to-green-600',
+                badgeText: 'text-[#1E3A8A]',
+                badgeRing: 'ring-4 ring-emerald-400/40 shadow-lg shadow-emerald-500/30',
+                hover: 'hover:border-emerald-500 dark:hover:border-emerald-400 hover:shadow-emerald-200/50',
               },
             }[key];
 
             return (
               <div
                 key={key}
-                className={`relative flex items-center gap-5 p-5 lg:p-6 rounded-2xl border-2 transition-all duration-300 ${
+                className={`relative flex items-center gap-4 sm:gap-4.5 lg:gap-5.5 p-3.5 sm:p-4.5 md:p-5 lg:p-5.5 xl:p-6 rounded-2xl border-2 sm:border-3 transition-all duration-300 min-h-[76px] sm:min-h-[86px] md:min-h-[96px] lg:min-h-[106px] xl:min-h-[116px] ${
                   isRevealedAndCorrect
-                    ? 'border-emerald-500 bg-emerald-100/90 dark:border-emerald-400 dark:bg-emerald-950/70 shadow-[0_0_35px_rgba(16,185,129,0.4)] scale-[1.02] z-10 ring-4 ring-emerald-500/30'
+                    ? 'border-emerald-500 bg-emerald-100/95 dark:border-emerald-400 dark:bg-emerald-950/80 shadow-[0_0_35px_rgba(16,185,129,0.5)] scale-[1.01] z-10 ring-4 ring-emerald-500/40'
                     : isRevealedAndWrong
                     ? 'opacity-35 border-slate-300 bg-slate-200/60 dark:border-slate-800 dark:bg-slate-900/40 scale-95'
                     : `${keyConfig.border} ${keyConfig.bg} ${keyConfig.hover} shadow-md dark:shadow-lg`
                 }`}
               >
-                {/* Round Badge Letter A, B, C, D */}
+                {/* Round Badge Letter A, B, C, D - Mô phỏng bảng giơ đáp án tròn, kích thước to nổi bật */}
                 <div
-                  className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex-shrink-0 flex items-center justify-center text-2xl md:text-3xl font-black shadow-md ${
+                  className={`w-14 h-14 sm:w-16 sm:h-16 md:w-[70px] md:h-[70px] lg:w-[78px] lg:h-[78px] xl:w-[86px] xl:h-[86px] rounded-full flex-shrink-0 flex items-center justify-center text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] xl:text-[44px] font-black transition-all ${
                     isRevealedAndCorrect
-                      ? 'bg-emerald-500 text-slate-950 ring-4 ring-emerald-300 animate-pulse'
-                      : keyConfig.badge
+                      ? 'bg-emerald-500 text-slate-950 ring-4 ring-emerald-300 animate-pulse shadow-lg shadow-emerald-500/40'
+                      : `${keyConfig.badgeBg} ${keyConfig.badgeText} ${keyConfig.badgeRing}`
                   }`}
                 >
                   {key}
                 </div>
 
-                {/* Option text */}
-                <div className={`flex-1 text-2xl md:text-3xl lg:text-[34px] font-extrabold leading-snug ${
+                {/* Option text - Kích thước to hơn 1 tý, tầm nhìn xa rõ nét */}
+                <div className={`flex-1 text-xl sm:text-2xl md:text-[27px] lg:text-[31px] xl:text-[35px] 2xl:text-[39px] font-black leading-snug tracking-tight ${
                   isRevealedAndCorrect
                     ? 'text-emerald-950 dark:text-emerald-100'
                     : 'text-[#0B2A6F] dark:text-slate-100'
@@ -398,8 +410,8 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
 
                 {/* Crown/Check icon on correct answer */}
                 {isRevealedAndCorrect && (
-                  <div className="pr-3 text-emerald-600 dark:text-emerald-400 animate-bounce">
-                    <CheckCircle className="w-10 h-10" />
+                  <div className="pr-2 text-emerald-600 dark:text-emerald-400 animate-bounce flex-shrink-0">
+                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12" />
                   </div>
                 )}
               </div>
@@ -407,10 +419,10 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
           })}
         </div>
 
-        {/* Explanation banner (if revealed and available) */}
-        {isAnswerRevealed && currentQ.explanation && (
-          <div className="mt-4 p-4 rounded-2xl bg-white/95 border-2 border-emerald-400 text-emerald-950 dark:bg-slate-900/90 dark:border-emerald-500/40 dark:text-emerald-200 text-base md:text-lg flex items-start gap-3 animate-fade-in shadow-md backdrop-blur-md">
-            <span className="font-extrabold text-emerald-700 bg-emerald-100 dark:text-emerald-400 uppercase text-xs tracking-wider px-2 py-1 dark:bg-emerald-950 rounded-lg">
+        {/* Explanation banner - Chỉ hiển thị ở phần khán giả giao lưu nếu có, đã lược bỏ ở phần thi chính và câu hỏi phụ theo yêu cầu */}
+        {isAnswerRevealed && pool === 'audience' && currentQ.explanation && (
+          <div className="mt-2.5 p-3 rounded-2xl bg-white/95 border-2 border-emerald-400 text-emerald-950 dark:bg-slate-900/90 dark:border-emerald-500/40 dark:text-emerald-200 text-sm md:text-base flex items-start gap-2.5 animate-fade-in shadow-md backdrop-blur-md flex-shrink-0">
+            <span className="font-extrabold text-emerald-700 bg-emerald-100 dark:text-emerald-400 uppercase text-xs tracking-wider px-2 py-0.5 dark:bg-emerald-950 rounded-lg">
               Giải thích
             </span>
             <span className="font-medium">{currentQ.explanation}</span>
@@ -421,7 +433,7 @@ export const QuizScreen: React.FC<QuizScreenProps> = ({ pool }) => {
       {/* ============================================================== */}
       {/* 3. MC CONTROL BAR (Bottom Deck, toggleable with 'H' key)       */}
       {/* ============================================================== */}
-      <footer className="relative z-30 border-t border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/90 backdrop-blur-lg transition-colors">
+      <footer className="relative z-30 border-t border-sky-200/80 bg-white/90 dark:border-slate-800/80 dark:bg-slate-950/90 backdrop-blur-lg transition-colors flex-shrink-0">
         {/* Toggle hide bar button */}
         <div className="absolute -top-7 right-8">
           <button
